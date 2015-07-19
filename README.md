@@ -1,2 +1,2 @@
-Docker Container for PHP application continuous testing
-=======================================================
+Docker Container with PHPBrew
+=============================
