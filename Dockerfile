@@ -50,7 +50,7 @@ RUN export DEBIAN_FRONTEND="noninteractive" \
   && apt-get -qqy install mysql-server mysql-client libmysqlclient-dev libmysqld-dev \
   && apt-get -qqy install ca-certificates \
   && apt-get -qqy install libyaml-dev libyaml-0-2 \
-  && apt-get -qqy install libcurl4-gnutls-dev libcurl4-openssl-dev libexpat1-dev libz-dev librecode0 \
+  && apt-get -qqy install libcurl4-gnutls-dev libexpat1-dev libz-dev librecode0 \
   && apt-get -qqy install libpcre3-dev libpcre++-dev \
   && apt-get -qqy install git \
   && apt-get -qqy install wget \
