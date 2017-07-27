@@ -21,6 +21,8 @@ ENV PHP_VERSION 7.1.3
 ENV PHPBREW_ROOT /opt/phpbrew
 ENV PHPBREW_HOME /opt/phpbrew
 
+EXPOSE 80 443
+
 COPY 001.conf /etc/apache2/sites-available/000-default.conf
 
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
@@ -53,7 +55,7 @@ apt-get -qqy install php7.0 php7.0-dev php7.0-curl php7.0-gd; exit 0
 RUN export DEBIAN_FRONTEND="noninteractive" && apt-get install -f
 
 RUN export DEBIAN_FRONTEND="noninteractive" && \
-apt-get -qqy  -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confnew \
+apt-get -qqy -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confnew \
 install apache2 apache2-dev libapache2-mod-php7.0; exit 0
 
 RUN export DEBIAN_FRONTEND="noninteractive" && apt-get install -f
@@ -88,11 +90,11 @@ RUN source ${PHPBREW_HOME}/bashrc && phpbrew list
 RUN source ${PHPBREW_HOME}/bashrc && phpbrew switch $PHP_VERSION
 RUN source ${PHPBREW_HOME}/bashrc && phpbrew use $PHP_VERSION
 
-RUN phpbrew ext install dbase 7.0.0beta1
+RUN source ${PHPBREW_HOME}/bashrc && phpbrew ext install dbase 7.0.0beta1
 
-RUN phpbrew ext install iconv
+RUN source ${PHPBREW_HOME}/bashrc && phpbrew ext install iconv
 
-RUN phpbrew ext install gd -- \
+RUN source ${PHPBREW_HOME}/bashrc && phpbrew ext install gd -- \
 --with-gd=/usr/include \
 --with-png-dir=/usr/include \
 --with-jpeg-dir=/usr/include \
