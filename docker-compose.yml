@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+
+  app:
+    build: gram7gram/phpbrew-php7.1-apache2.4
+    ports:
+      - 10000:80
+      - 10001:443
+    volumes:
+      - /var/www/html:/var/www/html
