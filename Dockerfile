@@ -77,6 +77,9 @@ echo "export PHPBREW_HOME=$PHPBREW_HOME" >> /etc/profile && \
 echo "source ${PHPBREW_HOME}/bashrc" >> /etc/profile && \
 echo "source ${PHPBREW_HOME}/bashrc" >> /root/.bashrc
 
+RUN wget -q -O /usr/bin/composer https://getcomposer.org/composer.phar && \
+chmod +x /usr/bin/composer
+
 RUN curl -L -O https://github.com/phpbrew/phpbrew/raw/master/phpbrew && \
 chmod +x phpbrew && \
 mv phpbrew /usr/bin/phpbrew
