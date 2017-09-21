@@ -3,9 +3,11 @@ version: '3'
 services:
 
   app:
-    build: gram7gram/phpbrew-php7.1-apache2.4
+    build: gram7gram/phpbrew-php7.1-apache2.4:memcached
     ports:
       - 10000:80
       - 10001:443
     volumes:
       - /var/www/html:/var/www/html
+      - ./000-default.conf:/etc/apache2/sites-available/000-default.conf
+      - ./default-ssl.conf:/etc/apache2/sites-available/default-ssl.conf
