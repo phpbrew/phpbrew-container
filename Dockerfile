@@ -102,7 +102,7 @@ RUN source ${PHPBREW_HOME}/bashrc && phpbrew ext install gd -- \
 --with-jpeg-dir=/usr/include \
 --with-freetype-dir=/usr/include
 
-RUN source ${PHPBREW_HOME}/bashrc && phpbrew ext install memcached stable -- --disable-memcached-sasl
+RUN source ${PHPBREW_HOME}/bashrc && phpbrew ext install https://github.com/php-memcached-dev/php-memcached php7 -- --disable-memcached-sasl
 
 RUN echo "date.timezone='$TIME_ZONE'" >> $PHPBREW_HOME/php/php-$PHP_VERSION/etc/php.ini
 RUN echo "memory_limit=2G" >> $PHPBREW_HOME/php/php-$PHP_VERSION/etc/php.ini
