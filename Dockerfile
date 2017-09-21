@@ -23,8 +23,6 @@ ENV PHPBREW_HOME /opt/phpbrew
 
 EXPOSE 80 443
 
-COPY 001.conf /etc/apache2/sites-available/000-default.conf
-
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 RUN export DEBIAN_FRONTEND="noninteractive" && apt-get update
@@ -45,6 +43,7 @@ ca-certificates \
 libyaml-dev libyaml-0-2 \
 libcurl4-gnutls-dev libexpat1-dev libz-dev librecode0 \
 libpcre3-dev libpcre++-dev \
+memcached \
 git wget curl; exit 0
 
 RUN export DEBIAN_FRONTEND="noninteractive" && apt-get install -f
@@ -103,11 +102,17 @@ RUN source ${PHPBREW_HOME}/bashrc && phpbrew ext install gd -- \
 --with-jpeg-dir=/usr/include \
 --with-freetype-dir=/usr/include
 
+RUN source ${PHPBREW_HOME}/bashrc && phpbrew ext install memcached stable -- --disable-memcached-sasl
+
 RUN echo "date.timezone='$TIME_ZONE'" >> $PHPBREW_HOME/php/php-$PHP_VERSION/etc/php.ini
 RUN echo "memory_limit=2G" >> $PHPBREW_HOME/php/php-$PHP_VERSION/etc/php.ini
 
 RUN echo "LoadModule php7_module $PHPBREW_HOME/build/php-$PHP_VERSION/libs/libphp$PHP_VERSION.so" > /etc/apache2/mods-available/php7.0.load
 
 WORKDIR /var/www/html
+
+RUN a2enmod rewrite
+
+RUN a2enmod ssl
 
 CMD apache2 -DFOREGROUND
