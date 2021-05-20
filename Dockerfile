@@ -56,7 +56,7 @@ RUN phpbrew init \
 RUN  phpbrew --debug install 7.4 +default +mysql +sqlite +mb +debug +fpm +intl +openssl=/usr/local/opt/openssl +bz2=/usr/local/opt/bzip2 +zlib=/usr/local/opt/zlib +apxs2=/usr/bin/apxs2 -- --enable-maintainer-zts
 RUN  phpbrew ext install parallel -- --enable-parallel-coverage --enable-parallel-dev
  
-# RUN echo "Asia/Taipei" > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata
+RUN echo "Asia/Taipei" > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata
  
 COPY php.ini $PHPBREW_ROOT/php/php-$PHP_SUBVERSION/etc/php.ini
  
