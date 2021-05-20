@@ -4,8 +4,8 @@ FROM  ubuntu:20.04
 MAINTAINER Yo-An Lin "yoanlin93@gmail.com"
 
 ENV PHP_SUBVERSION 7.4
-ENV PHPBREW_ROOT E:/phpbrew
-ENV PHPBREW_HOME E:/phpbrew
+ENV PHPBREW_ROOT /root/.phpbrew
+ENV PHPBREW_HOME /root/.phpbrew
 ENV PHPBREW_PHP php-$PHP_SUBVERSION
 
 USER root 
